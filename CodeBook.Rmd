@@ -1,0 +1,18 @@
+---
+title: "CodeBook"
+author: "Lars Röglin"
+date: "2 12 2019"
+output: html_document
+---
+
+# Preparations outside R
+
+The zip file with the raw-data has been downloaded from https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip and extracted to the folder "01 - RAW-DATA" in the project directory.
+
+# Preprocessing
+
+## Read data and clean variable names
+
+* From the dataset description the files activity_labels.txt and features.txt were imported into corresponding dataframes. This is used for immediate joining of the activity label with the human readable activity name as well as an appropriate labeling of the columns of the 561 features.
+
+* The training dataset comprising the files "01 - RAW-DATA/train/subject_train.txt", 01 - RAW-DATA/train/X_train.txt" and "01 - RAW-DATA/train/y_train.txt" has been imported into separate data.frames which have been cleaned and merged to a single data.frame (training_data).
