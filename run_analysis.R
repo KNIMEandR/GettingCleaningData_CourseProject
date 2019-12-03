@@ -32,3 +32,22 @@ measurements_train <- read.delim("01 - RAW-DATA/train/X_train.txt",
 				 col.names = feature_names$Feature) 
 
 training_data <- cbind(subject_train, activities_train, measurements_train)
+
+# Read test dataset and merge into single dataframe
+
+subject_test <- read.delim("01 - RAW-DATA/test/subject_test.txt",
+			    header=FALSE) %>%
+	rename(Subject = V1)
+
+activities_test <- read.delim("01 - RAW-DATA/test/y_test.txt",
+			       header=FALSE) %>%
+	rename(Label = V1) %>%
+	inner_join(activity_labels)
+
+measurements_test <- read.delim("01 - RAW-DATA/test/X_test.txt",
+				 sep = "",
+				 header=FALSE,
+				 stringsAsFactors = FALSE,
+				 col.names = feature_names$Feature) 
+
+test_data <- cbind(subject_test, activities_test, measurements_test)
