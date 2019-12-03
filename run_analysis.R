@@ -51,3 +51,7 @@ measurements_test <- read.delim("01 - RAW-DATA/test/X_test.txt",
 				 col.names = feature_names$Feature) 
 
 test_data <- cbind(subject_test, activities_test, measurements_test)
+
+# Combine training and test dataset to one lage dataset
+
+full_data <- rbind(training_data, test_data)
