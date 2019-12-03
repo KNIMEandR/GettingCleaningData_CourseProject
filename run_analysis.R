@@ -8,7 +8,7 @@ activity_labels <- read.delim("01 - RAW-DATA/activity_labels.txt",
 	rename(Label = V1,
 	       Activity.Name=V2)
 
-feature_names <- activity_labels <- read.delim("01 - RAW-DATA/features.txt",
+feature_names <- read.delim("01 - RAW-DATA/features.txt",
 					       header=FALSE,
 					       sep=" ") %>%
 	rename(Activity.Label = V1,
@@ -55,3 +55,6 @@ test_data <- cbind(subject_test, activities_test, measurements_test)
 # Combine training and test dataset to one lage dataset
 
 full_data <- rbind(training_data, test_data)
+
+filtered_data <- full_data %>%
+	select(matches("Subject|Label|Activity.Name|.*\\.mean.*|.*\\.std.*"))
