@@ -64,5 +64,4 @@ The zip file with the raw-data has been downloaded from https://d396qusza40orc.c
 		       	sep=",",  
 		       	dec=".")*  
 
-# Descriptions of final datasets
 
