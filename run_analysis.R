@@ -5,14 +5,14 @@ library(tidyverse)
 activity_labels <- read.delim("01 - RAW-DATA/activity_labels.txt",
 			      header=FALSE,
 			      sep=" ") %>%
-	rename(Label = V1,
+	rename(Activity.Label = V1,
 	       Activity.Name = V2)
 
 feature_names <- read.delim("01 - RAW-DATA/features.txt",
 					       header=FALSE,
 					       sep=" ") %>%
 	rename(Activity.Label = V1,
-	       Feature=V2)
+	       Feature = V2)
 
 # Read training dataset and merge into single dataframe
 
@@ -22,7 +22,7 @@ subject_train <- read.delim("01 - RAW-DATA/train/subject_train.txt",
 
 activities_train <- read.delim("01 - RAW-DATA/train/y_train.txt",
 			       header=FALSE) %>%
-	rename(Label = V1) %>%
+	rename(Activity.Label = V1) %>%
 	inner_join(activity_labels)
 
 measurements_train <- read.delim("01 - RAW-DATA/train/X_train.txt",
@@ -41,7 +41,7 @@ subject_test <- read.delim("01 - RAW-DATA/test/subject_test.txt",
 
 activities_test <- read.delim("01 - RAW-DATA/test/y_test.txt",
 			       header=FALSE) %>%
-	rename(Label = V1) %>%
+	rename(Activity.Label = V1) %>%
 	inner_join(activity_labels)
 
 measurements_test <- read.delim("01 - RAW-DATA/test/X_test.txt",
@@ -62,10 +62,10 @@ filtered_data <- full_data %>%
 # Aggregate data with average of each variable per activity and subject
 
 aggregated_data <- filtered_data %>%
-	group_by(Subject, Label, Activity.Name) %>%
+	group_by(Subject, Activity.Label, Activity.Name) %>%
 	summarize_all(funs(mean = mean(., na.rm = TRUE))) %>%
 	ungroup() %>%
 	setNames(paste("average", colnames(.), sep = ".")) %>%
 	rename(Subject = average.Subject,
-	       Label = average.Label,
+	       Activity.Label = average.Activity.Label,
 	       Activity.Name = average.Activity.Name)
