@@ -2,13 +2,13 @@ library(tidyverse)
 
 # Read activity labels and feature names to allow for properly labeling the datasets
 
-activity_labels <- read.delim("activity_labels.txt",
+activity_labels <- read.delim("01 - RAW-DATA/activity_labels.txt",
 			      header=FALSE,
 			      sep=" ") %>%
 	rename(Activity.Label = V1,
 	       Activity.Name = V2)
 
-feature_names <- read.delim("features.txt",
+feature_names <- read.delim("01 - RAW-DATA/features.txt",
 					       header=FALSE,
 					       sep=" ") %>%
 	rename(Activity.Label = V1,
@@ -16,16 +16,16 @@ feature_names <- read.delim("features.txt",
 
 # Read training dataset and merge into single dataframe
 
-subject_train <- read.delim("train/subject_train.txt",
+subject_train <- read.delim("01 - RAW-DATA/train/subject_train.txt",
 			    header=FALSE) %>%
 	rename(Subject = V1)
 
-activities_train <- read.delim("train/y_train.txt",
+activities_train <- read.delim("01 - RAW-DATA/train/y_train.txt",
 			       header=FALSE) %>%
 	rename(Activity.Label = V1) %>%
 	inner_join(activity_labels)
 
-measurements_train <- read.delim("train/X_train.txt",
+measurements_train <- read.delim("01 - RAW-DATA/train/X_train.txt",
 				 sep = "",
 				 header=FALSE,
 				 stringsAsFactors = FALSE,
@@ -35,16 +35,16 @@ training_data <- cbind(subject_train, activities_train, measurements_train)
 
 # Read test dataset and merge into single dataframe
 
-subject_test <- read.delim("test/subject_test.txt",
+subject_test <- read.delim("01 - RAW-DATA/test/subject_test.txt",
 			    header=FALSE) %>%
 	rename(Subject = V1)
 
-activities_test <- read.delim("test/y_test.txt",
+activities_test <- read.delim("01 - RAW-DATA/test/y_test.txt",
 			       header=FALSE) %>%
 	rename(Activity.Label = V1) %>%
 	inner_join(activity_labels)
 
-measurements_test <- read.delim("test/X_test.txt",
+measurements_test <- read.delim("01 - RAW-DATA/test/X_test.txt",
 				 sep = "",
 				 header=FALSE,
 				 stringsAsFactors = FALSE,
@@ -84,28 +84,28 @@ aggregated_long <- aggregated_data %>%
 # Export as .csv file for interoperability
 
 write.table(filtered_data,
-	  file="cleaned_filtered.csv",
+	  file="02 - CLEANED DATA/cleaned_filtered.csv",
 	  quote = FALSE,
 	  sep=",",
 	  dec=".",
 	  row.names = FALSE)
 
 write.table(filtered_long,
-	    file="cleaned_filtered_long.csv",
+	    file="02 - CLEANED DATA/cleaned_filtered_long.csv",
 	    quote = FALSE,
 	    sep=",",
 	    dec=".",
 	    row.names = FALSE)
 
 write.table(aggregated_data,
-	  file="cleaned_aggregated.csv",
+	  file="02 - CLEANED DATA/cleaned_aggregated.csv",
 	  quote=FALSE,
 	  sep=",",
 	  dec=".",
 	  row.names = FALSE)
 
 write.table(aggregated_data,
-	    file="cleaned_aggregated_long.csv",
+	    file="02 - CLEANED DATA/cleaned_aggregated_long.csv",
 	    quote=FALSE,
 	    sep=",",
 	    dec=".",
