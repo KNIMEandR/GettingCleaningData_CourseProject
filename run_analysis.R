@@ -69,3 +69,19 @@ aggregated_data <- filtered_data %>%
 	rename(Subject = average.Subject,
 	       Activity.Label = average.Activity.Label,
 	       Activity.Name = average.Activity.Name)
+
+# Export as .csv file for interoperability
+
+write.table(filtered_data,
+	  file="02 - CLEANED DATA/cleaned_filtered.csv",
+	  quote = FALSE,
+	  sep=",",
+	  dec=".",
+	  row.names = FALSE)
+
+write.table(aggregated_data,
+	  file="02 - CLEANED DATA/cleaned_aggregated.csv",
+	  quote=FALSE,
+	  sep=",",
+	  dec=".",
+	  row.names = FALSE)

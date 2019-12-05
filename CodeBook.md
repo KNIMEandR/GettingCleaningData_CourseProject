@@ -21,8 +21,16 @@ The zip file with the raw-data has been downloaded from https://d396qusza40orc.c
 
 * Both datasets have been combined to a single large dataframe containing all measurements (full_data)
 
-# Extracting only measurements on mean and standard deviation
+## Extracting only measurements on mean and standard deviation
 
 * The full dataset (full_data) has been reduced to only comprise the identifying features Subject, Label and Activity.Name and all Columns that either contain "mean" or "std" in the column name
 
 * While the Median absolute deviation is also a measure of variance it is excluded from the filtered dataset
+
+# Aggregation
+
+* The filtered dataset from the last step has been grouped by Subject, Activity.Label and Activity.Name (reduntant but excludes both Activity Colums from being averaged). All collumns have been averaged using the mean function and renamed appropriately
+
+# Export
+
+* For interoperability and easier use in subsequent processing steps the filtered and aggregated datasets have been exported to .csv-files in the "02 - CLEANED DATA" folder in the project directory
