@@ -6,7 +6,7 @@ activity_labels <- read.delim("01 - RAW-DATA/activity_labels.txt",
 			      header=FALSE,
 			      sep=" ") %>%
 	rename(Label = V1,
-	       Activity.Name=V2)
+	       Activity.Name = V2)
 
 feature_names <- read.delim("01 - RAW-DATA/features.txt",
 					       header=FALSE,
@@ -58,3 +58,14 @@ full_data <- rbind(training_data, test_data)
 
 filtered_data <- full_data %>%
 	select(matches("Subject|Label|Activity.Name|.*\\.mean.*|.*\\.std.*"))
+
+# Aggregate data with average of each variable per activity and subject
+
+aggregated_data <- filtered_data %>%
+	group_by(Subject, Label, Activity.Name) %>%
+	summarize_all(funs(mean = mean(., na.rm = TRUE))) %>%
+	ungroup() %>%
+	setNames(paste("average", colnames(.), sep = ".")) %>%
+	rename(Subject = average.Subject,
+	       Label = average.Label,
+	       Activity.Name = average.Activity.Name)
