@@ -7,7 +7,7 @@ output: html_document
 
 # Preparations outside R
 
-The zip file with the raw-data has been downloaded from https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip and extracted to the folder "01 - RAW-DATA" in the project directory.
+The zip file with the raw-data has been downloaded from https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip and extracted in the project directory.
 
 # Preprocessing
 
@@ -26,9 +26,9 @@ The zip file with the raw-data has been downloaded from https://d396qusza40orc.c
 |5|STANDING|
 |6|LAYING|
 
-* The training dataset comprising the files "01 - RAW-DATA/train/subject_train.txt", 01 - RAW-DATA/train/X_train.txt" and "01 - RAW-DATA/train/y_train.txt" has been imported into separate data.frames which have been cleaned and merged to a single data.frame (training_data).
+* The training dataset comprising the files "train/subject_train.txt", train/X_train.txt" and "train/y_train.txt" has been imported into separate data.frames which have been cleaned and merged to a single data.frame (training_data).
 
-* The test dataset comprising the files "01 - RAW-DATA/test/subject_test.txt", 01 - RAW-DATA/train/X_test.txt" and "01 - RAW-DATA/test/y_test.txt" has been imported into separate data.frames which have been cleaned and merged to a single data.frame (test_data).
+* The test dataset comprising the files "test/subject_test.txt", train/X_test.txt" and "test/y_test.txt" has been imported into separate data.frames which have been cleaned and merged to a single data.frame (test_data).
 
 * Both datasets have been combined to a single large dataframe containing all measurements (full_data)
 
@@ -44,7 +44,7 @@ The zip file with the raw-data has been downloaded from https://d396qusza40orc.c
 
 # Export
 
-* For interoperability and easier use in subsequent processing steps the filtered and aggregated datasets have been exported to .csv-files in the "02 - CLEANED DATA" folder in the project directory
+* For interoperability and easier use in subsequent processing steps the filtered and aggregated datasets have been exported to .csv-files in the project directory
 
 * Datasets have been kept at the original (wide) format for all processing steps.
 
@@ -52,13 +52,13 @@ The zip file with the raw-data has been downloaded from https://d396qusza40orc.c
 
 * Resulting CSV-Files can be imported into R using  
 
-	*cleaned <- read.table(file="02 - CLEANED DATA/cleaned_aggregated.csv",   
+	*cleaned <- read.table(file="cleaned_aggregated.csv",   
 		       header = TRUE,  
 		       quote="",  
 		       sep=",",  
 		       dec=".")*  
 		
-	*aggregated <- read.table(file="02 - CLEANED DATA/cleaned_filtered.csv",   
+	*aggregated <- read.table(file="cleaned_filtered.csv",   
 		       	header = TRUE,  
 		       	quote="",  
 		       	sep=",",  
